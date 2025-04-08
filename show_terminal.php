@@ -1,6 +1,6 @@
 <?php
 
-use App\Comment\Tests\Service\CommentTest;
+use App\Comment\tests\Service\CommentTest;
 
 require 'vendor/autoload.php';
 

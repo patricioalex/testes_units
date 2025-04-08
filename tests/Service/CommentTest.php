@@ -18,6 +18,18 @@ class CommentTest extends TestCase
         $news->add_comment(new Comment($user_one, 'Quero compra esse item!'));
         $news->add_comment(new Comment($user_two, 'Estou pensando em comprar.'));
 
-        self::assertNotEmpty($news);
+        self::assertNotEmpty($news, 'deu certo');
+    }
+
+    public function testQuantosComentários(){
+        $news = new News('Temas: Novo teste');
+        $user_one = new User('Rany');
+        $news->add_comment(new Comment($user_one, 'Quero compra esse item!'));
+        $news->add_comment(new Comment($user_one, 'Estou pensando em comprar.'));
+        $news->add_comment(new Comment($user_one, 'Estou pensando em comprar mais um.'));
+        self::assertCount(3,$news->get_comments(), 'A quantidade não é maior ou inferior ao esperado!');
+        self::assertArrayHasKey(0,$news->get_comments(), 'Chave não existe no array');
+        self::assertArrayHasKey(1,$news->get_comments(), 'Chave não existe no array');
+        self::assertArrayHasKey(2,$news->get_comments(), 'Chave não existe no array');
     }
 }
